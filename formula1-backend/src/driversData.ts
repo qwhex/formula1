@@ -11,8 +11,8 @@ interface Driver {
 }
 
 interface DriverResponse extends Driver {
-  imgUrl: string
-  place: number
+  imgUrl: string // /static/alb.png
+  place: number // 1
 }
 
 interface LocalDriverData {
@@ -51,8 +51,8 @@ export const overtake = (driverId: number): void => {
   _overtake(driverOrder, driverPosition)
 }
 
+// generic overtake function
 const _overtake = (array: any[], position: number): void => {
-  // generic overtake function
   if (position <= 0) {
     throw Error("The first one can't overtake anyone")
   }
