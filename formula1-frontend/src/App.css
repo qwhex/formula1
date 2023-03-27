@@ -1,0 +1,9 @@
+body {
+  margin: 16px auto;
+  padding: 0 16px;
+  max-width: 600px;
+}
+
+.ant-list-item {
+  transition: transform 1s; 
+}
