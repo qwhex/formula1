@@ -10,6 +10,11 @@ interface Driver {
   team: string // 'Williams'
 }
 
+interface DriverResponse extends Driver {
+  imgUrl: string
+  place: number
+}
+
 interface LocalDriverData {
   driversById: Map<number, Driver>
   driverOrder: number[]
@@ -32,8 +37,10 @@ const loadDrivers = (): LocalDriverData => {
 const { driversById, driverOrder } = loadDrivers()
 
 // "db logic" for "get drivers"
-export const getOrderedDrivers = (): Driver[] =>
-  driverOrder.map((id) => driversById.get(id)).filter((item): item is Driver => item !== undefined)
+export const getOrderedDrivers = (): DriverResponse[] =>
+  driverOrder.map((id) => driversById.get(id))
+    .filter((item): item is Driver => item !== undefined)
+    .map((d, i) => ({ ...d, imgUrl: `/static/${d.code.toLowerCase()}.png`, place: i + 1 }))
 
 // "db logic" for "overtake"
 export const overtake = (driverId: number): void => {

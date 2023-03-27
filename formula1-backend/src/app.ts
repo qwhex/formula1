@@ -6,7 +6,9 @@ const app: Express = express()
 
 app.use(cors())
 
-app.get('/api/drivers/', (req: Request, res: Response) => {
+app.use('/static', express.static('static'))
+
+app.get('/api/drivers/', (_req: Request, res: Response) => {
   res.json(getOrderedDrivers())
 })
 
